@@ -3,6 +3,7 @@
 namespace Itigoppo\BacklogApi\Connector;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Itigoppo\BacklogApi\Exception\BacklogException;
 
 class ApiKeyConnector extends Connector
@@ -28,14 +29,17 @@ class ApiKeyConnector extends Connector
             $response = $this->client->request('GET', $path, [
                 'headers' => $headers,
                 'query' => ['apiKey' => $this->api_key] + $query_params,
-                'form_params' => $form_params,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
-        if ($response->getStatusCode() != '200') {
-            throw new BacklogException('', $response->getStatusCode());
+        if ($response->getStatusCode() !== 200) {
+            throw new BacklogException($response->getBody()->getContents(), $response->getStatusCode());
         }
 
         return json_decode($response->getBody()->getContents());
@@ -49,8 +53,12 @@ class ApiKeyConnector extends Connector
                 'query' => ['apiKey' => $this->api_key] + $query_params,
                 'form_params' => $form_params,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
         return json_decode($response->getBody()->getContents());
@@ -64,8 +72,12 @@ class ApiKeyConnector extends Connector
                 'query' => ['apiKey' => $this->api_key] + $query_params,
                 'form_params' => $form_params,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
         return json_decode($response->getBody()->getContents());
@@ -79,8 +91,12 @@ class ApiKeyConnector extends Connector
                 'query' => ['apiKey' => $this->api_key] + $query_params,
                 'form_params' => $form_params,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
         return json_decode($response->getBody()->getContents());
@@ -92,10 +108,13 @@ class ApiKeyConnector extends Connector
             $response = $this->client->request('DELETE', $path, [
                 'headers' => $headers,
                 'query' => ['apiKey' => $this->api_key] + $query_params,
-                'form_params' => $form_params,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
         return json_decode($response->getBody()->getContents());
@@ -107,10 +126,14 @@ class ApiKeyConnector extends Connector
             $response = $this->client->request('POST', $path, [
                 'headers' => $headers,
                 'query' => ['apiKey' => $this->api_key] + $query_params,
-                'multipart' => $multipart
+                'multipart' => $multipart,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
         return json_decode($response->getBody()->getContents());
@@ -122,14 +145,17 @@ class ApiKeyConnector extends Connector
             $response = $this->client->request('GET', $path, [
                 'headers' => $headers,
                 'query' => ['apiKey' => $this->api_key] + $query_params,
-                'form_params' => $form_params,
             ]);
-        } catch (\Exception $exception) {
-            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        } catch (RequestException $exception) {
+            throw new BacklogException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->hasResponse() ? $exception->getResponse() : null
+            );
         }
 
-        if ($response->getStatusCode() != '200') {
-            throw new BacklogException('', $response->getStatusCode());
+        if ($response->getStatusCode() !== 200) {
+            throw new BacklogException($response->getBody()->getContents(), $response->getStatusCode());
         }
 
         // Return the whole response object for further processing
