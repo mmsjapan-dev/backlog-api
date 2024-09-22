@@ -1,5 +1,5 @@
 {
-    "name": "1shiharat/backlog-api",
+    "name": "mmsjapan-dev/backlog-api",
     "description": "Backlog API Library for PHP",
     "type": "library",
     "require": {
@@ -13,9 +13,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "itigoppo",
-            "email": "itigoppo+github@gmail.com",
-            "homepage": "http://twitter.com/itigoppo"
+            "name": "mmsjapan-dev",
+            "email": "info@mmsjapan.jp"
         }
     ],
     "minimum-stability": "stable",
